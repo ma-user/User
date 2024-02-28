@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option go_package = "google.golang.org/grpc/examples/helloworld/helloworld";
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+
+package helloworld;
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+}
+
+message User {
+  int64 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  int32 age = 4;
+  string token = 5;
+}
+
+message CreateUserRequest {
+  User user = 1;
+}
+
+message CreateUserResponse {
+  User user = 1;
+  string token = 2;
+  string message = 3;
+}
+
+message GetUserRequest {
+  int64 id = 1;
+  string token = 2;
+}
+
+message GetUserResponse {
+  User user = 1;
+  string message = 2;
+}
+
+message UpdateUserRequest{
+  int64 id = 1;
+  User User = 2;
+  string token = 3;
+}
+
+message UpdateUserResponse{
+  User user = 1;
+  string message = 2;
+}
